@@ -1,4 +1,4 @@
-package com.betrybe.agrix.models;
+package com.betrybe.agrix.models.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,8 +20,6 @@ public class Farm {
   private String name;
   private Double size;
 
-  @OneToMany(mappedBy = "farm")
-  private List<Crop> crops;
 
   /**
    * Instantiates a new Farm.

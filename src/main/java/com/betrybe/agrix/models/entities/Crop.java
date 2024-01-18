@@ -1,4 +1,4 @@
-package com.betrybe.agrix.models;
+package com.betrybe.agrix.models.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,9 +25,6 @@ public class Crop {
   @Column(name = "planted_area")
   private Double plantedArea;
 
-  @ManyToOne
-  @JoinColumn(name = "farm_id")
-  private Farm farm;
 
   /**
    * Instantiates a new Crop.
@@ -40,12 +37,10 @@ public class Crop {
    *
    * @param name        the name
    * @param plantedArea the planted area
-   * @param farm        the farm
    */
-  public Crop(String name, Double plantedArea, Farm farm) {
+  public Crop(String name, Double plantedArea) {
     this.name = name;
     this.plantedArea = plantedArea;
-    this.farm = farm;
   }
 
   /**
@@ -102,21 +97,4 @@ public class Crop {
     this.plantedArea = plantedArea;
   }
 
-  /**
-   * Gets farm.
-   *
-   * @return the farm
-   */
-  public Farm getFarm() {
-    return farm;
-  }
-
-  /**
-   * Sets farm.
-   *
-   * @param farm the farm
-   */
-  public void setFarm(Farm farm) {
-    this.farm = farm;
-  }
 }
