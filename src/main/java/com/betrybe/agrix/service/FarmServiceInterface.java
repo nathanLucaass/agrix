@@ -17,4 +17,6 @@ public interface FarmServiceInterface {
   Farm createFarm(Farm farm);
 
   List<Farm> getFarms();
+
+  Farm getFarmById(Long id);
 }

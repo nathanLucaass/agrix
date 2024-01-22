@@ -3,10 +3,12 @@ package com.betrybe.agrix.controller;
 import com.betrybe.agrix.models.entities.Farm;
 import com.betrybe.agrix.service.FarmServiceInterface;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,4 +56,19 @@ public class FarmController {
 
     return ResponseEntity.status(HttpStatus.OK).body(farms);
   }
+
+  /**
+   * Gets farm by id.
+   *
+   * @param id the id
+   * @return the farm by id
+   */
+  @GetMapping("/{id}")
+  public ResponseEntity<Farm> getFarmById(@PathVariable Long id) {
+
+    Farm farm = farmService.getFarmById(id);
+
+    return ResponseEntity.status(HttpStatus.OK).body(farm);
+  }
+
 }
