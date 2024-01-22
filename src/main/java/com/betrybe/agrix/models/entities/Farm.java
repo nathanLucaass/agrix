@@ -20,6 +20,8 @@ public class Farm {
   private String name;
   private Double size;
 
+  @OneToMany(mappedBy = "farm")
+  private List<Crop> crops;
 
   /**
    * Instantiates a new Farm.

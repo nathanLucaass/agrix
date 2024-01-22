@@ -1,5 +1,6 @@
 package com.betrybe.agrix.models.entities;
 
+import com.betrybe.agrix.models.entities.Farm;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,6 +26,9 @@ public class Crop {
   @Column(name = "planted_area")
   private Double plantedArea;
 
+  @ManyToOne
+  @JoinColumn(name = "farm_id")
+  private Farm farm;
 
   /**
    * Instantiates a new Crop.
@@ -37,10 +41,15 @@ public class Crop {
    *
    * @param name        the name
    * @param plantedArea the planted area
+   * @param farm        the farm
    */
-  public Crop(String name, Double plantedArea) {
+  public Crop(String name, Double plantedArea, Farm farm) {
     this.name = name;
     this.plantedArea = plantedArea;
+    this.farm = farm;
+  }
+
+  public Crop(Long id, String name, Double plantedArea, Object o) {
   }
 
   /**
@@ -97,4 +106,21 @@ public class Crop {
     this.plantedArea = plantedArea;
   }
 
+  /**
+   * Gets farm.
+   *
+   * @return the farm
+   */
+  public Farm getFarm() {
+    return farm;
+  }
+
+  /**
+   * Sets farm.
+   *
+   * @param farm the farm
+   */
+  public void setFarm(Farm farm) {
+    this.farm = farm;
+  }
 }
