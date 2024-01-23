@@ -57,9 +57,9 @@ public class CropController {
    * @return the crop by id
    */
   @GetMapping("/{id}")
-  public ResponseEntity<Crop> getCropById(@PathVariable Long id) {
+  public ResponseEntity<CropDto> getCropById(@PathVariable Long id) {
     Crop crop = cropService.getCropById(id);
 
-    return ResponseEntity.status(HttpStatus.OK).body(crop);
+    return ResponseEntity.status(HttpStatus.OK).body(CropDto.cropToDto(crop));
   }
 }
