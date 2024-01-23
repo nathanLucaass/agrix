@@ -1,6 +1,7 @@
 package com.betrybe.agrix.controller;
 
 import com.betrybe.agrix.dto.CropDto;
+import com.betrybe.agrix.dto.FarmCreationDto;
 import com.betrybe.agrix.models.entities.Crop;
 import com.betrybe.agrix.models.entities.Farm;
 import com.betrybe.agrix.service.CropService;
@@ -45,10 +46,10 @@ public class FarmController {
    * @return the response entity
    */
   @PostMapping
-  public ResponseEntity<Farm> postNewFarm(@RequestBody Farm farm) {
+  public ResponseEntity<FarmCreationDto> postNewFarm(@RequestBody Farm farm) {
     Farm createdFarm = farmService.createFarm(farm);
 
-    return ResponseEntity.status(HttpStatus.CREATED).body(createdFarm);
+    return ResponseEntity.status(HttpStatus.CREATED).body(FarmCreationDto.farmToFarm(farm));
   }
 
   /**
@@ -57,11 +58,17 @@ public class FarmController {
    * @return the all farms
    */
   @GetMapping
-  public ResponseEntity<List<Farm>> getAllFarms() {
+  public ResponseEntity<List<FarmCreationDto>> getAllFarms() {
     List<Farm> farms = farmService.getFarms();
+    List<FarmCreationDto> farmDtos = new ArrayList<>();
 
-    return ResponseEntity.status(HttpStatus.OK).body(farms);
+    for (Farm farm : farms) {
+      farmDtos.add(FarmCreationDto.farmToFarm(farm));
+    }
+
+    return ResponseEntity.status(HttpStatus.OK).body(farmDtos);
   }
+
 
   /**
    * Gets farm by id.
@@ -70,11 +77,11 @@ public class FarmController {
    * @return the farm by id
    */
   @GetMapping("/{id}")
-  public ResponseEntity<Farm> getFarmById(@PathVariable Long id) {
+  public ResponseEntity<FarmCreationDto> getFarmById(@PathVariable Long id) {
 
     Farm farm = farmService.getFarmById(id);
 
-    return ResponseEntity.status(HttpStatus.OK).body(farm);
+    return ResponseEntity.status(HttpStatus.OK).body(FarmCreationDto.farmToFarm(farm));
   }
 
   /**
