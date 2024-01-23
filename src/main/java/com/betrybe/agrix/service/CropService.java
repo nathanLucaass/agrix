@@ -58,4 +58,9 @@ public class CropService implements CropServiceInterface {
     return cropRepository.findAll();
   }
 
+  @Override
+  public Crop getCropById(Long id) {
+    return cropRepository.getReferenceById(id);
+  }
+
 }
