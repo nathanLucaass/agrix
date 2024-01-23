@@ -5,6 +5,7 @@ import com.betrybe.agrix.models.entities.Crop;
 import com.betrybe.agrix.models.entities.Farm;
 import com.betrybe.agrix.service.CropService;
 import com.betrybe.agrix.service.FarmServiceInterface;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -89,5 +90,25 @@ public class FarmController {
 
     return ResponseEntity.status(HttpStatus.CREATED).body(CropDto.cropToDto(newCrop));
   }
+
+  /**
+   * Gets farm crops.
+   *
+   * @param farmId the farm id
+   * @return the farm crops
+   */
+  @GetMapping("{farmId}/crops")
+  public ResponseEntity<List<CropDto>> getFarmCrops(@PathVariable Long farmId) {
+    List<Crop> crops = cropService.getFarmCrops(farmId);
+    List<CropDto> cropDtos = new ArrayList<>();
+
+    for (Crop crop : crops) {
+      CropDto cropDto = CropDto.cropToDto(crop);
+      cropDtos.add(cropDto);
+    }
+
+    return ResponseEntity.status(HttpStatus.OK).body(cropDtos);
+  }
+
 
 }

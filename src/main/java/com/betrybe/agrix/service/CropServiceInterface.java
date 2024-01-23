@@ -1,6 +1,7 @@
 package com.betrybe.agrix.service;
 
 import com.betrybe.agrix.models.entities.Crop;
+import java.util.List;
 
 /**
  * The interface Crop service interface.
@@ -15,4 +16,6 @@ public interface CropServiceInterface {
    * @return the crop
    */
   Crop createCrop(Long farmId, Crop crop);
+
+  List<Crop> getFarmCrops(Long farmId);
 }

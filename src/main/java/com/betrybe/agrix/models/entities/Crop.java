@@ -1,6 +1,8 @@
 package com.betrybe.agrix.models.entities;
 
 import com.betrybe.agrix.models.entities.Farm;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,6 +28,7 @@ public class Crop {
   @Column(name = "planted_area")
   private Double plantedArea;
 
+  @JsonBackReference
   @ManyToOne
   @JoinColumn(name = "farm_id")
   private Farm farm;

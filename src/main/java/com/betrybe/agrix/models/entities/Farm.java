@@ -1,5 +1,6 @@
 package com.betrybe.agrix.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +21,7 @@ public class Farm {
   private String name;
   private Double size;
 
+  @JsonManagedReference
   @OneToMany(mappedBy = "farm")
   private List<Crop> crops;
 
@@ -83,6 +85,15 @@ public class Farm {
    */
   public Double getSize() {
     return size;
+  }
+
+  /**
+   * Gets crops.
+   *
+   * @return the crops
+   */
+  public List<Crop> getCrops() {
+    return crops;
   }
 
   /**
