@@ -8,8 +8,7 @@ import com.betrybe.agrix.models.entities.Crop;
 public record CropDto(
     Long id,
     String name,
-    Double plantedArea,
-    Long farmId) {
+    Double plantedArea) {
 
   /**
    * Crop to dto crop dto.
@@ -21,8 +20,7 @@ public record CropDto(
     return new CropDto(
         crop.getId(),
         crop.getName(),
-        crop.getPlantedArea(),
-        crop.getFarm().getId()
+        crop.getPlantedArea()
     );
   }
 }
