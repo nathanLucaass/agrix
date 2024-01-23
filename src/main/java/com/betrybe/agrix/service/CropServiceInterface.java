@@ -18,4 +18,6 @@ public interface CropServiceInterface {
   Crop createCrop(Long farmId, Crop crop);
 
   List<Crop> getFarmCrops(Long farmId);
+
+  List<Crop> getAll();
 }

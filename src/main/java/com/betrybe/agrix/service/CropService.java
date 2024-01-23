@@ -53,4 +53,9 @@ public class CropService implements CropServiceInterface {
     return optionalFarm.get().getCrops();
   }
 
+  @Override
+  public List<Crop> getAll() {
+    return cropRepository.findAll();
+  }
+
 }
